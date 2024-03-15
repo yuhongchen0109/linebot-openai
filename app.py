@@ -7,6 +7,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import openai
 import os
+message_counter = 0  # 初始化訊息計數器
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
 line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
@@ -35,6 +36,8 @@ def handle_message(event):
     )
     try:
         ret = response['choices'][0]['message']['content'].strip()
+        message_counter += 1  # 每次傳送訊息時，將計數器加一
+        print(f"已經傳送了 {message_counter} 則訊息")  # 打印出已經傳送的訊息數量
     except:
         ret = '發生錯誤！'
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=ret))
