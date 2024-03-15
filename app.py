@@ -28,10 +28,10 @@ def handle_message(event):
     response = openai.ChatCompletion.create(
         messages=[
             {"role": "user", "content": text1}, { # 這裏存放的是使用者增進輸入的訊息
-        'role':'user','content': "你好，很高興認識你" },
+        'role':'user','content': "你好，很高興認" },
     { # 這個則是聊天機器人的回應訊息
         'role':'assistant',
-        'content': f"你好！我也很高興認識你。有什麼外語方面的問題我可以幫助你解答嗎？" },
+        'content': f"你好！我也很高興認識你。有什麼方面的問題我可以幫助你解答嗎？" },
     { # 這個則是這次使用者輸入的訊息
         'role':'user',
         'content': f"{user_message}" }],
