@@ -28,10 +28,7 @@ def handle_message(event):
     text1=event.message.text
     response = openai.ChatCompletion.create(
       messages =  [
-    {
-        'role':'system',
-        'content': "你是一個專業的外語老師，請以簡短的方式對話"
-    },
+   
     { # 這裏存放的是使用者增進輸入的訊息
         'role':'user',
         'content': "你好，很高興認識你"
