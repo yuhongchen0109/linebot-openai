@@ -25,6 +25,7 @@ def callback():
 
 @handler1.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    global message_counter  # 告訴函數我們要使用全域的 message_counter
     text1=event.message.text
     response = openai.ChatCompletion.create(
         messages=[
