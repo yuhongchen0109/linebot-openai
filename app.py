@@ -1,8 +1,5 @@
 from flask import Flask
 app = Flask(__name__)
-pip install opencc-python-reimplemented
-from opencc import OpenCC
-cc = OpenCC('s2t')  # 建立一個簡體中文轉繁體中文的轉換器
 
 from flask import request, abort
 from linebot import  LineBotApi, WebhookHandler
@@ -28,7 +25,6 @@ def callback():
 @handler1.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text1=event.message.text
-    text1 = cc.convert(text1)  # 將用戶的輸入轉換為繁體中文
     response = openai.ChatCompletion.create(
         messages=[
             {"role": "system", "content": "You are not only a knowledgeable history teacher but also novelist.you come from germany.you know most of thing about world war 2."},
@@ -39,7 +35,6 @@ def handle_message(event):
     )
     try:
         ret = response['choices'][0]['message']['content'].strip()
-        ret = cc.convert(ret)  # 將回應轉換為繁體中文
     except:
         ret = '發生錯誤！'
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=ret))
