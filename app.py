@@ -24,6 +24,7 @@ def callback():
 
 @handler1.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    user_message = f"""我想學習英文~"""
     text1=event.message.text
     response = openai.ChatCompletion.create(
       messages =  [
