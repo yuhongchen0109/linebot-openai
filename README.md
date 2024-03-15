@@ -1,2 +1,0 @@
-# linebot-openai
-for homework
